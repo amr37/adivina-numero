@@ -1,13 +1,13 @@
 // configurar la aplicación
 const mensajeInicial = 'Empieza a adivinar...'
-let score = 21
-let highScore = 1
+let score = 20
+let highscore = 0
 const secretNumber = Math.trunc(Math.random() * 20) + 1
 
 // seleccionar elementos del DOM
 const messageField = document.querySelector('.message')
 const scoreField = document.querySelector('.score')
-const highScoreField = document.querySelector('.highscore')
+const highscoreField = document.querySelector('.highscore')
 const secretNumberField = document.querySelector('.number')
 const checkButton = document.querySelector('.check')
 const againButton = document.querySelector('.again')
@@ -16,8 +16,9 @@ const guessNumberField = document.querySelector('.guess')
 // inicializar la aplicación
 messageField.textContent = mensajeInicial
 scoreField.textContent = score
-highScoreField.textContent = highScore
+highscoreField.textContent = highscore
 secretNumberField.textContent = secretNumber
+
 
 // funcionalidad de la aplicación
 
@@ -41,7 +42,17 @@ checkButton.addEventListener('click', () => {
   } else {
     // ha ganado...
     // cambiar fondo de pantalla
+    document.body.style.backgroundColor = 'red'
+    messageField.textContent = 'Te has acertado'
+
+    if (score > highscore) {
+      highscore = score
+      highscoreField.textcontent = highscore
+    }
+
+
     // mostrar el número secreto
+    secretNumberField.textContent = secretNumber
     // actualizar el highScore
   }
 
